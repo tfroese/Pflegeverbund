@@ -1,20 +1,9 @@
-<?php
-function renderBreadcrumb($items) {
-    echo '<div class="breadcrumb">
-        <div class="container">
-            <ul class="breadcrumb__list">
-                <li class="breadcrumb__item"><a href="/">Home</a></li>';
-    
-    foreach ($items as $label => $url) {
-        if ($url) {
-            echo "<li class=\"breadcrumb__item\"><a href=\"$url\">$label</a></li>";
-        } else {
-            echo "<li class=\"breadcrumb__item\">$label</li>";
-        }
-    }
-    
-    echo '</ul>
-        </div>
-    </div>';
-}
-?>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <?php foreach ($items as $item): ?>
+            <li class="breadcrumb-item">
+                <a href="<?= htmlspecialchars($item['url']) ?>"><?= htmlspecialchars($item['label']) ?></a>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</nav>

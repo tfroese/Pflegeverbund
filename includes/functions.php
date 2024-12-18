@@ -11,6 +11,18 @@ function getPageDescription($description = null) {
 }
 
 function renderComponent($name, $data = []) {
-    extract($data);
-    include "components/$name.php";
+    // Sanitize component name
+    $name = basename($name);
+    $componentPath = "components/$name.php";
+    
+    // Check if component exists
+    if (!file_exists($componentPath)) {
+        throw new Exception("Component '$name' not found");
+    }
+    
+    // Create isolated scope for variables
+    (function() use ($componentPath, $data) {
+        extract($data);
+        include $componentPath;
+    })();
 }
