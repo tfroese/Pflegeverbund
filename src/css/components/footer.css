@@ -1,0 +1,40 @@
+@import '../variables.css';
+
+.footer {
+  background-color: #343a40;
+  color: white;
+  padding: 3rem 0;
+}
+
+.footer__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.footer__logo img {
+  max-height: 40px;
+}
+
+.footer__links a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer__links a:hover {
+  color: var(--color-secondary);
+}
+
+@media (min-width: 768px) {
+  .footer__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .footer__container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

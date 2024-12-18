@@ -1,0 +1,76 @@
+/* Header styles */
+.header {
+  position: relative;
+  height: 600px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/header-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.header__content {
+  max-width: 800px;
+  padding: 0 var(--container-padding);
+}
+
+.header__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.header__subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.header__cta {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: var(--color-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.header__cta:hover {
+  background-color: #0052a3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+    height: 500px;
+  }
+
+  .header__title {
+    font-size: 2rem;
+  }
+
+  .header__subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 400px;
+  }
+
+  .header__title {
+    font-size: 1.75rem;
+  }
+
+  .header__subtitle {
+    font-size: 1rem;
+  }
+}

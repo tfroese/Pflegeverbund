@@ -1,0 +1,49 @@
+@import '../variables.css';
+
+.top-bar {
+  background-color: var(--color-background-light);
+  padding: 0.5rem 0;
+}
+
+.top-bar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-nav {
+  background-color: var(--color-background);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main-nav__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem var(--container-padding);
+}
+
+.main-nav__logo img {
+  max-height: 50px;
+}
+
+.main-nav__menu {
+  display: none;
+}
+
+.main-nav__menu a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.main-nav__menu a:hover {
+  color: var(--color-primary);
+}
+
+@media (min-width: 768px) {
+  .main-nav__menu {
+    display: flex;
+    gap: 2rem;
+  }
+}

@@ -1,0 +1,31 @@
+@import '../variables.css';
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-background);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  padding: 1rem;
+  z-index: var(--z-index-cookie-banner);
+}
+
+.cookie-banner__buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.cookie-banner__settings {
+  display: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--color-background-light);
+  border-radius: var(--border-radius);
+}
+
+.cookie-banner__settings.is-visible {
+  display: block;
+}
