@@ -1,6 +1,5 @@
 import { onReady } from './utils/dom.js';
 import { addCacheBuster } from './utils/cache.js';
-import { initFAQ } from './modules/faq.js';
 import { initCookieBanner } from './modules/cookie-banner.js';
 import { initAnalytics } from './modules/analytics.js';
 
