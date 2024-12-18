@@ -27,6 +27,17 @@ renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
     <div class="container">
         <h1 class="page-title">Häufig gestellte Fragen (FAQ)</h1>
         
+        <div class="faq-search">
+            <div class="faq-search__container">
+                <input type="text" 
+                       id="faqSearch" 
+                       class="faq-search__input" 
+                       placeholder="Suchen Sie nach Fragen..."
+                       aria-label="FAQ durchsuchen">
+                <div id="searchResults" class="faq-search__results" hidden></div>
+            </div>
+        </div>
+        
         <div class="faq-container">
             <?php foreach ($questionsByCategory as $category => $questions): ?>
                 <section class="faq-category" id="<?= createUrlSlug($category) ?>">
@@ -42,7 +53,7 @@ renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
                                 
                                 <div class="faq-answer" hidden>
                                     <div class="faq-answer__content">
-                                        <?= htmlspecialchars($question['answer_short']) ?>
+                                        <?= strip_tags($question['answer_short'], '<b><strong><a><ul><li><ol><p>') ?>
                                     </div>
                                     <a href="<?= SITE_PATH ?>/faq/<?= $question['id'] ?>/<?= createUrlSlug($question['question']) ?>" 
                                        class="faq-answer__more">

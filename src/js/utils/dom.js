@@ -24,3 +24,15 @@ export function addEvent(element, event, handler, options = {}) {
         element.addEventListener(event, handler, options);
     }
 }
+
+export function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}

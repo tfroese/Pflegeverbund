@@ -40,7 +40,7 @@ renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
             </header>
             
             <div class="faq-detail__content">
-                <?= nl2br(htmlspecialchars($question['answer_extended'])) ?>
+            <?= strip_tags($question['answer_extended'], '<b><strong><a><ul><li><ol><p>') ?>
             </div>
             
             <footer class="faq-detail__footer">
