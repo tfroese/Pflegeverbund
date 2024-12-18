@@ -9,19 +9,19 @@ $pageDescription = 'Häufig gestellte Fragen zur Pflegeberatung, Pflegegraden un
 include 'components/header.php';
 
 $breadcrumbItems = [
-    'Häufige Fragen (FAQ)' => null
+    ['label' => 'Startseite', 'url' => '/'],
+    ['label' => 'FAQ', 'url' => '/faq']
 ];
-renderComponent('breadcrumb', [
-    'items' => [
-        ['label' => 'Home', 'url' => '/'],
-        ['label' => 'FAQ', 'url' => '/faq']
-    ]
-]);
+renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
 ?>
 
 <main class="main-content">
     <div class="container">
         <h1 class="page-title">Häufige Fragen (FAQ)</h1>
+        <p class="page-description">
+            Hier finden Sie Antworten auf die am häufigsten gestellten Fragen rund um das Thema Pflege. 
+            Sollten Sie weitere Fragen haben, kontaktieren Sie uns gerne.
+        </p>
         
         <?php
         $mainCategories = getFaqCategories();

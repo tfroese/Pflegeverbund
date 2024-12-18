@@ -31,6 +31,11 @@
         </div>
     </footer>
 
-    <script type="module" src="<?=JS_URL;?>/main.js"></script>
+    <script>
+        // Global configuration
+        window.JS_URL = '<?=JS_URL;?>';
+        window.APP_VERSION = '<?=time();?>'; // Add timestamp for cache busting
+    </script>
+    <script type="module" src="<?=JS_URL;?>/main.js?v=<?=time();?>"></script>
 </body>
 </html>

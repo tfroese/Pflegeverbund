@@ -1,0 +1,131 @@
+/* Guide Grid */
+.guides-grid {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Guide Preview */
+.guide-preview {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.guide-preview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.guide-preview__image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.guide-preview__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.guide-preview:hover .guide-preview__image img {
+    transform: scale(1.05);
+}
+
+.guide-preview__content {
+    padding: 1.5rem;
+}
+
+.guide-preview__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.guide-preview__title a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.guide-preview__title a:hover {
+    color: var(--color-primary);
+}
+
+.guide-preview__subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.guide-preview__meta {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+/* Guide Detail */
+.guide-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.guide-detail__header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.guide-detail__title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.guide-detail__subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.guide-detail__meta {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.guide-detail__image {
+    margin: 2rem 0;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.guide-detail__image img {
+    width: 100%;
+    height: auto;
+}
+
+.guide-detail__content {
+    line-height: 1.8;
+    color: var(--color-text);
+}
+
+.guide-detail__content h2 {
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem;
+}
+
+.guide-detail__content p {
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .guides-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .guides-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
