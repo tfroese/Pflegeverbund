@@ -1,0 +1,143 @@
+/* FAQ Overview Page */
+.faq-container {
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.faq-category {
+    margin-bottom: 3rem;
+}
+
+.faq-category__title {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: var(--color-background-light);
+}
+
+.faq-icon {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--color-text);
+    transition: transform 0.3s ease;
+}
+
+.faq-icon::before {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.faq-icon::after {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+}
+
+.faq-question[aria-expanded="true"] .faq-icon::after {
+    transform: translateX(-50%) rotate(90deg);
+}
+
+.faq-answer {
+    padding: 0 1rem 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.faq-answer__more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.faq-answer__more:hover {
+    text-decoration: underline;
+}
+
+/* FAQ Detail Page */
+.faq-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.faq-detail__header {
+    margin-bottom: 2rem;
+}
+
+.faq-detail__title {
+    font-size: 2rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.faq-detail__category {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+.faq-detail__content {
+    line-height: 1.8;
+    color: var(--color-text);
+    margin-bottom: 2rem;
+}
+
+.faq-detail__footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+}
+
+
+/* Add transition properties for animations */
+.faq-answer {
+    padding: 0 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    overflow: hidden;
+    transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.faq-answer__content {
+    padding-bottom: 1rem;
+}

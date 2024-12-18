@@ -8,13 +8,24 @@ const COOKIE_TYPES = {
     MARKETING: 'marketing_cookies'
 };
 
+const ANIMATION_DURATION = 400; // Match this with CSS transition duration
+
 export function initCookieBanner() {
     const cookieBanner = $('#cookieBanner');
-    if (!cookieBanner) return;
+    if (!cookieBanner) {
+        console.log('Cookie banner not found in DOM');
+        return;
+    }
 
-    // Show banner if preferences not set
+    // Show banner with animation if preferences not set
     if (!hasAcceptedCookies()) {
-        cookieBanner.style.display = 'block';
+        // Delay to ensure smooth animation
+        requestAnimationFrame(() => {
+            cookieBanner.style.display = 'block';
+            // Trigger reflow
+            cookieBanner.offsetHeight;
+            cookieBanner.classList.add('is-visible');
+        });
     }
 
     setupCookieControls();
@@ -22,21 +33,33 @@ export function initCookieBanner() {
 }
 
 function setupCookieControls() {
-    // Remove inline onclick handlers and use proper event listeners
-    const acceptAllBtn = $('[data-cookie-action="accept-all"]');
-    const acceptNecessaryBtn = $('[data-cookie-action="accept-necessary"]');
-    const settingsBtn = $('[data-cookie-action="toggle-settings"]');
-    const saveSettingsBtn = $('[data-cookie-action="save-settings"]');
-    
-    if (acceptAllBtn) acceptAllBtn.addEventListener('click', acceptAllCookies);
-    if (acceptNecessaryBtn) acceptNecessaryBtn.addEventListener('click', acceptNecessaryCookies);
-    if (settingsBtn) settingsBtn.addEventListener('click', toggleCookieSettings);
-    if (saveSettingsBtn) saveSettingsBtn.addEventListener('click', saveSettings);
+    const controls = {
+        acceptAll: $('[data-cookie-action="accept-all"]'),
+        acceptNecessary: $('[data-cookie-action="accept-necessary"]'),
+        toggleSettings: $('[data-cookie-action="toggle-settings"]'),
+        saveSettings: $('[data-cookie-action="save-settings"]'),
+        allCheckbox: $('#allCookies')
+    };
 
-    // Setup "Select All" checkbox
-    const allCheckbox = $('#allCookies');
-    if (allCheckbox) {
-        allCheckbox.addEventListener('change', toggleAllCookies);
+    // Safely add event listeners
+    if (controls.acceptAll) {
+        controls.acceptAll.addEventListener('click', acceptAllCookies);
+    }
+    
+    if (controls.acceptNecessary) {
+        controls.acceptNecessary.addEventListener('click', acceptNecessaryCookies);
+    }
+    
+    if (controls.toggleSettings) {
+        controls.toggleSettings.addEventListener('click', toggleCookieSettings);
+    }
+    
+    if (controls.saveSettings) {
+        controls.saveSettings.addEventListener('click', saveSettings);
+    }
+    
+    if (controls.allCheckbox) {
+        controls.allCheckbox.addEventListener('change', toggleAllCookies);
     }
 }
 
@@ -60,15 +83,17 @@ function acceptNecessaryCookies() {
 }
 
 function saveSettings() {
-    const analytics = $('#analyticsCookies').checked;
-    const marketing = $('#marketingCookies').checked;
+    const analyticsCookie = $('#analyticsCookies');
+    const marketingCookie = $('#marketingCookies');
+    
+    if (!analyticsCookie || !marketingCookie) return;
     
     setCookie(COOKIE_TYPES.NECESSARY, 'accepted');
-    setCookie(COOKIE_TYPES.ANALYTICS, analytics ? 'accepted' : 'rejected');
-    setCookie(COOKIE_TYPES.MARKETING, marketing ? 'accepted' : 'rejected');
+    setCookie(COOKIE_TYPES.ANALYTICS, analyticsCookie.checked ? 'accepted' : 'rejected');
+    setCookie(COOKIE_TYPES.MARKETING, marketingCookie.checked ? 'accepted' : 'rejected');
     setCookie('cookie_preferences', 'custom');
     
-    if (marketing) {
+    if (marketingCookie.checked) {
         initAnalytics();
     }
     
@@ -77,30 +102,45 @@ function saveSettings() {
 
 function toggleCookieSettings() {
     const settings = $('#cookieSettings');
-    if (settings) {
-        settings.classList.toggle('is-visible');
+    if (!settings) return;
+
+    const isVisible = settings.classList.contains('is-visible');
+    
+    if (!isVisible) {
+        settings.style.display = 'block';
+        // Trigger reflow
+        settings.offsetHeight;
+        settings.classList.add('is-visible');
+    } else {
+        settings.classList.remove('is-visible');
+        setTimeout(() => {
+            settings.style.display = 'none';
+        }, 300); // Match CSS transition duration
     }
 }
 
 function toggleAllCookies() {
     const allCheckbox = $('#allCookies');
-    const checkboxes = $$('.cookie-settings__option input[type="checkbox"]:not([disabled])');
+    if (!allCheckbox) return;
     
+    const checkboxes = $$('.cookie-settings__option input[type="checkbox"]:not([disabled])');
     checkboxes.forEach(checkbox => {
         checkbox.checked = allCheckbox.checked;
     });
 }
 
 function loadSavedPreferences() {
-    const analyticsCookie = getCookie(COOKIE_TYPES.ANALYTICS);
-    const marketingCookie = getCookie(COOKIE_TYPES.MARKETING);
+    const analyticsCookie = $('#analyticsCookies');
+    const marketingCookie = $('#marketingCookies');
     
-    if (analyticsCookie === 'accepted') {
-        $('#analyticsCookies').checked = true;
+    if (!analyticsCookie || !marketingCookie) return;
+    
+    if (getCookie(COOKIE_TYPES.ANALYTICS) === 'accepted') {
+        analyticsCookie.checked = true;
     }
     
-    if (marketingCookie === 'accepted') {
-        $('#marketingCookies').checked = true;
+    if (getCookie(COOKIE_TYPES.MARKETING) === 'accepted') {
+        marketingCookie.checked = true;
         initAnalytics();
     }
     
@@ -109,17 +149,24 @@ function loadSavedPreferences() {
 
 function updateAllCheckbox() {
     const allCheckbox = $('#allCookies');
-    const checkboxes = $$('.cookie-settings__option input[type="checkbox"]:not([disabled])');
-    const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+    if (!allCheckbox) return;
     
-    if (allCheckbox) {
-        allCheckbox.checked = allChecked;
-    }
+    const checkboxes = $$('.cookie-settings__option input[type="checkbox"]:not([disabled])');
+    const allChecked = checkboxes.length > 0 && checkboxes.every(checkbox => checkbox.checked);
+    
+    allCheckbox.checked = allChecked;
 }
 
 function hideCookieBanner() {
     const banner = $('#cookieBanner');
-    if (banner) {
+    if (!banner) return;
+    
+    banner.classList.add('is-hiding');
+    banner.classList.remove('is-visible');
+    
+    // Wait for animation to complete before removing from DOM
+    setTimeout(() => {
         banner.style.display = 'none';
-    }
+        banner.classList.remove('is-hiding');
+    }, ANIMATION_DURATION);
 }

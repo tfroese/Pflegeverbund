@@ -22,12 +22,8 @@ $breadcrumbItems = [
 ];
 
 // Generate SEO meta tags
-$metaTags = generateMetaTags([
-    'title' => $guide['headline'] . ' - Ratgeber - ' . SITE_NAME,
-    'description' => $guide['subheadline'] ?? substr(strip_tags($guide['content']), 0, 160),
-    'og_type' => 'article',
-    'og_image' => $guide['image_path'] ? SITE_URL . $guide['image_path'] : null
-]);
+$pageTitle = $guide['headline'] . ' - Ratgeber - ' . SITE_NAME;
+$pageDescription = $guide['subheadline'] ?? substr(strip_tags($guide['content']), 0, 160);
 
 // Generate Schema.org markup
 $schemaMarkup = generateSchemaMarkup([
@@ -35,7 +31,8 @@ $schemaMarkup = generateSchemaMarkup([
     generateBreadcrumbSchema($breadcrumbItems)
 ]);
 
-include 'components/header.php';
+// Start output buffering
+ob_start();
 
 renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
 ?>
@@ -81,4 +78,7 @@ renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
     </article>
 </main>
 
-<?php include 'components/footer.php'; ?>
+<?php
+$content = ob_get_clean();
+include 'components/base-layout.php';
+?>

@@ -33,20 +33,23 @@ try {
     $pdo->exec("DROP TABLE IF EXISTS faq_questions");
     $pdo->exec("DROP TABLE IF EXISTS faq_categories");
     $pdo->exec("DROP TABLE IF EXISTS guides");
+    $pdo->exec("DROP TABLE IF EXISTS admin_users");
     echo "Existing tables dropped\n";
     
     // Schema files
     $schemaFiles = [
         __DIR__ . '/../sql/schema/01_categories.sql',
         __DIR__ . '/../sql/schema/02_questions.sql',
-        __DIR__ . '/../sql/schema/03_guides.sql'
+        __DIR__ . '/../sql/schema/03_guides.sql',
+        __DIR__ . '/../sql/schema/04_admin_users.sql'
     ];
     
     // Data files
     $dataFiles = [
         __DIR__ . '/../sql/data/01_categories.sql',
         __DIR__ . '/../sql/data/02_questions.sql',
-        __DIR__ . '/../sql/data/03_guides.sql'
+        __DIR__ . '/../sql/data/03_guides.sql',
+        __DIR__ . '/../sql/data/04_admin_users.sql'
     ];
     
     // Execute schema files
@@ -66,3 +69,4 @@ try {
 } catch (PDOException $e) {
     die("Database Error: " . $e->getMessage() . "\n");
 }
+?>

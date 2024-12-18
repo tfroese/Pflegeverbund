@@ -9,6 +9,25 @@
   box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
   padding: 1rem;
   z-index: var(--z-index-cookie-banner);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.4s ease-out, opacity 0.3s ease-out;
+}
+
+.cookie-banner.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.cookie-banner.is-hiding {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.cookie-banner__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .cookie-banner__buttons {
@@ -24,8 +43,13 @@
   padding: 1rem;
   background-color: var(--color-background-light);
   border-radius: var(--border-radius);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .cookie-banner__settings.is-visible {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -2,6 +2,7 @@ import { onReady } from './utils/dom.js';
 import { addCacheBuster } from './utils/cache.js';
 import { initCookieBanner } from './modules/cookie-banner.js';
 import { initAnalytics } from './modules/analytics.js';
+import { initFAQAccordion } from './modules/faq-accordion.js';
 
 // Add cache buster to script URLs
 const scripts = document.querySelectorAll('script[src]');
@@ -14,7 +15,7 @@ scripts.forEach(script => {
 // Initialize modules
 onReady(() => {
     console.log('Initializing application...', new Date().toISOString());
-    initFAQ();
+    initFAQAccordion();
     initCookieBanner();
     // Analytics will be initialized by cookie banner if consent is given
 });

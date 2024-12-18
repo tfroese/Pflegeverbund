@@ -1,33 +1,24 @@
 <?php
-// Enable error reporting for debugging
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 require_once 'includes/config.php';
 require_once 'includes/functions.php';
 require_once 'includes/guide-functions.php';
 
-// Debug output
-echo "<!-- Debug: Script is running -->\n";
-echo "<!-- Debug: REQUEST_URI: " . $_SERVER['REQUEST_URI'] . " -->\n";
+// Get all published guides
+$guides = getPublishedGuides();
 
 $pageTitle = 'Ratgeber - Pflegeverbund';
 $pageDescription = 'Informative Ratgeber und Artikel rund um das Thema Pflege, Pflegegrade und Pflegeleistungen.';
 
-include 'components/header.php';
+// Generate breadcrumb items
+$breadcrumbItems = [
+    ['label' => 'Home', 'url' => SITE_PATH . '/'],
+    ['label' => 'Ratgeber', 'url' => SITE_PATH . '/ratgeber']
+];
 
-// Get all published guides
-$guides = getPublishedGuides();
+// Start output buffering
+ob_start();
 
-// Debug output
-echo "<!-- Debug: Number of guides: " . count($guides) . " -->\n";
-
-renderComponent('breadcrumb', [
-    'items' => [
-        ['label' => 'Home', 'url' => '/'],
-        ['label' => 'Ratgeber', 'url' => '/ratgeber']
-    ]
-]);
+renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
 ?>
 
 <main class="main-content">
@@ -46,4 +37,7 @@ renderComponent('breadcrumb', [
     </div>
 </main>
 
-<?php include 'components/footer.php'; ?>
+<?php
+$content = ob_get_clean();
+include 'components/base-layout.php';
+?>

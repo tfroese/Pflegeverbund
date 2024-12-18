@@ -23,7 +23,8 @@ $schemaMarkup = '<script type="application/ld+json">
 }
 </script>';
 
-include 'components/header.php';
+// Start output buffering
+ob_start();
 ?>
 
 <header class="header">
@@ -34,12 +35,13 @@ include 'components/header.php';
     </div>
 </header>
 
-<?php renderComponent('cookie-banner'); ?>
-
 <main class="main-content">
     <div class="container">
         <!-- Main content here -->
     </div>
 </main>
 
-<?php include 'components/footer.php'; ?>
+<?php
+$content = ob_get_clean();
+include 'components/base-layout.php';
+?>

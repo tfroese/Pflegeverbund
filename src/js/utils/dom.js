@@ -2,11 +2,13 @@
  * DOM utility functions
  */
 export function $(selector, context = document) {
+    if (!context) return null;
     return context.querySelector(selector);
 }
 
 export function $$(selector, context = document) {
-    return [...context.querySelectorAll(selector)];
+    if (!context) return [];
+    return Array.from(context.querySelectorAll(selector));
 }
 
 export function onReady(fn) {
