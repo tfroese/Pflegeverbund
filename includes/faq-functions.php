@@ -7,7 +7,7 @@ require_once 'database.php';
 
 function getFAQCategories() {
     $db = getDbConnection();
-    $sql = "SELECT * FROM faq_categories ORDER BY parent_id IS NULL DESC, name ASC";
+    $sql = "SELECT * FROM faq_categories ORDER BY name ASC";
     $stmt = $db->query($sql);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
