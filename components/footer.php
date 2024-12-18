@@ -1,7 +1,7 @@
 <footer class="footer">
         <div class="footer__container">
             <div class="footer__column">
-                <img src="/images/logo-white.svg" alt="Pflegeverbund Logo" class="footer__logo">
+                <img src="<?=IMG_URL;?>/logo-light.svg" alt="Pflegeverbund Logo" class="footer__logo" width="200" height="100">
             </div>
             
             <div class="footer__column">
