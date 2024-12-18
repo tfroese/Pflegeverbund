@@ -14,44 +14,29 @@ function getFaqCategories($parentId = null) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getFaqQuestions($categoryId) {
+function getFaqQuestionById($id) {
     $db = getDbConnection();
-    $sql = "SELECT * FROM faq_questions WHERE category_id = :category_id";
+    $sql = "SELECT q.*, c.name as category_name 
+            FROM faq_questions q 
+            JOIN faq_categories c ON q.category_id = c.id 
+            WHERE q.id = :id";
     $stmt = $db->prepare($sql);
-    $stmt->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function renderFaqSection($categoryId, $categoryName) {
-    $questions = getFaqQuestions($categoryId);
-    $subcategories = getFaqCategories($categoryId);
-    
-    echo "<section class='faq-section' id='category-$categoryId'>";
-    echo "<h2 class='faq-section__title'>$categoryName</h2>";
-    
-    if (!empty($questions)) {
-        echo "<div class='faq-accordion'>";
-        foreach ($questions as $question) {
-            echo "<div class='faq-item'>";
-            echo "<button class='faq-item__question' aria-expanded='false' aria-controls='answer-{$question['id']}'>";
-            echo htmlspecialchars($question['question']);
-            echo "</button>";
-            echo "<div class='faq-item__answer' id='answer-{$question['id']}'>";
-            echo nl2br(htmlspecialchars($question['answer']));
-            echo "</div>";
-            echo "</div>";
-        }
-        echo "</div>";
-    }
-    
-    if (!empty($subcategories)) {
-        echo "<div class='faq-subcategories'>";
-        foreach ($subcategories as $subcategory) {
-            renderFaqSection($subcategory['id'], $subcategory['name']);
-        }
-        echo "</div>";
-    }
-    
-    echo "</section>";
+function getRelatedQuestions($categoryId, $currentQuestionId, $limit = 3) {
+    $db = getDbConnection();
+    $sql = "SELECT * FROM faq_questions 
+            WHERE category_id = :category_id 
+            AND id != :current_id 
+            ORDER BY RAND() 
+            LIMIT :limit";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+    $stmt->bindParam(':current_id', $currentQuestionId, PDO::PARAM_INT);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

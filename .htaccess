@@ -1,8 +1,28 @@
+# Enable rewrite engine
 RewriteEngine On
+RewriteBase /Pflegeverbundde/
 
-# Rewrite URLs without .php to their corresponding .php files
+# Handle FAQ detail pages
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^faq/([0-9]+)/([^/]+)/?$ faq-detail.php?id=$1 [L,QSA]
+
+# Existing rules...
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ratgeber/?$ ratgeber.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ratgeber/([^/]+)/?$ ratgeber-detail.php?slug=$1 [L,QSA]
+
+# Handle other PHP files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php [L]
+RewriteRule ^(.+?)/?$ $1.php [L]
 
-# Rewrite ratgeber/slug to ratgeber-detail.php?slug=slug
-RewriteRule ^ratgeber/([^/]+)$ ratgeber-detail.php?slug=$1 [L,QSA]
+# If nothing else matches, try to serve the file directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]

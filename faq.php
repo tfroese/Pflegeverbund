@@ -1,17 +1,34 @@
 <?php
 require_once 'includes/config.php';
 require_once 'includes/functions.php';
-require_once 'includes/faq-functions.php';
+require_once 'includes/faq/category-functions.php';
+require_once 'includes/faq/question-functions.php';
+require_once 'includes/faq/format-functions.php';
+require_once 'includes/faq/components.php';
+require_once 'includes/seo-functions.php';
+require_once 'includes/faq-schema.php';
 
 $pageTitle = 'Häufige Fragen (FAQ) - Pflegeverbund';
 $pageDescription = 'Häufig gestellte Fragen zur Pflegeberatung, Pflegegraden und Pflegeleistungen. Finden Sie hier Antworten auf Ihre Fragen rund um das Thema Pflege.';
 
-include 'components/header.php';
-
+// Generate breadcrumb items
 $breadcrumbItems = [
-    ['label' => 'Startseite', 'url' => '/'],
-    ['label' => 'FAQ', 'url' => '/faq']
+    ['label' => 'Home', 'url' => SITE_PATH . '/'],
+    ['label' => 'FAQ', 'url' => SITE_PATH . '/faq']
 ];
+
+// Generate SEO meta tags
+$metaTags = generateMetaTags([
+    'title' => $pageTitle,
+    'description' => $pageDescription
+]);
+
+// Generate Schema.org markup
+$schemaMarkup = generateSchemaMarkup([
+    generateBreadcrumbSchema($breadcrumbItems)
+]);
+
+include 'components/header.php';
 renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
 ?>
 

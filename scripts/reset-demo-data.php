@@ -32,6 +32,7 @@ try {
     // Drop existing tables if they exist
     $pdo->exec("DROP TABLE IF EXISTS faq_questions");
     $pdo->exec("DROP TABLE IF EXISTS faq_categories");
+    $pdo->exec("DROP TABLE IF EXISTS guides");
     echo "Existing tables dropped\n";
     
     // Schema files
