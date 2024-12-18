@@ -40,16 +40,14 @@ try {
     $schemaFiles = [
         __DIR__ . '/../sql/schema/01_categories.sql',
         __DIR__ . '/../sql/schema/02_questions.sql',
-        __DIR__ . '/../sql/schema/03_guides.sql',
-        __DIR__ . '/../sql/schema/04_admin_users.sql'
+        __DIR__ . '/../sql/schema/03_guides.sql'
     ];
     
     // Data files
     $dataFiles = [
         __DIR__ . '/../sql/data/01_categories.sql',
         __DIR__ . '/../sql/data/02_questions.sql',
-        __DIR__ . '/../sql/data/03_guides.sql',
-        __DIR__ . '/../sql/data/04_admin_users.sql'
+        __DIR__ . '/../sql/data/03_guides.sql'
     ];
     
     // Execute schema files

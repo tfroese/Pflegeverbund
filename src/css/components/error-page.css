@@ -58,6 +58,20 @@
     text-decoration: underline;
 }
 
+/* Error-specific styles */
+.error-page--500 .error-page__help {
+    background-color: var(--color-background-light);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin-top: 3rem;
+}
+
+.error-page--500 .error-page__help a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .error-page {
