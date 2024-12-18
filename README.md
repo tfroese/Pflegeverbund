@@ -1,3 +1,3 @@
 # Pflegeverbund.de
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/tfroese/Pflegeverbund.de)
+[created by Tjark Fröse)

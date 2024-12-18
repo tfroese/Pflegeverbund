@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Rewrite URLs without .php to their corresponding .php files
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+
