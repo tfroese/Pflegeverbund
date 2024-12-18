@@ -1,7 +1,7 @@
 <?php
 // Site configuration
 define('SITE_NAME', 'Pflegeverbund');
-define('SITE_URL', 'https://pflegeverbund.de');
+define('SITE_URL', 'https://localhost:8888/Pflegeverbundde/');
 
 // Default meta information
 $defaultMeta = [
