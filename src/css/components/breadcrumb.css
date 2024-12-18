@@ -1,7 +1,17 @@
 .breadcrumb {
-    padding: 10px 0;
-    font-size: 14px;
-    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0;
+}
+
+.breadcrumb__item {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb__separator {
+    margin: 0 0.5rem;
 }
 
 .breadcrumb a {

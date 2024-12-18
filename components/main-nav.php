@@ -1,5 +1,5 @@
 <nav class="main-nav">
-    <div class="main-nav__container">
+    <div class="container">
         <a href="<?=SITE_PATH;?>" class="main-nav__logo">
             <img src="<?=IMG_URL;?>/logo.svg" alt="Pflegeverbund Logo">
         </a>

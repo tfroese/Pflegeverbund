@@ -1,22 +1,11 @@
 @import '../variables.css';
 
-.top-bar {
-  background-color: var(--color-background-light);
-  padding: 0.5rem 0;
-}
-
-.top-bar__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .main-nav {
   background-color: var(--color-background);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.main-nav__container {
+.main-nav .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
