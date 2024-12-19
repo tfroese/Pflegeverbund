@@ -1,0 +1,557 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #0071ad;
+    --primary-120: #005a8b; 
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;  
+    min-height: -webkit-fill-available;
+    min-height: fill-available;
+}
+
+.container.fullimg {
+    background: transparent url('img/header-bg.jpg') top center no-repeat;
+    background-size: cover;
+
+}
+
+
+.funnelform {
+    display: flex;
+    justify-content: center;  
+    margin-top: 100px;
+}
+
+form#questionnaireForm {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 480px;
+    width: 700px;
+    position: relative;
+    overflow-x: hidden;
+    margin: 12px;
+    
+    @media only screen and (max-width: 700px) {
+        width: 100%;
+    }
+
+}
+fieldset {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    
+}
+fieldset.active {
+    display: block;
+}
+legend {
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+    font-style: normal;
+
+    @media only screen and (max-width: 700px) {
+        font-size: 1.725em;
+    }
+}
+.flex-page {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;  
+    height: 100%;
+    margin: 0 20px;
+
+    @media only screen and (max-width: 700px) {
+        margin: 0 12px;
+    }
+}
+.flex-content {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    flex-grow:1;
+    gap: 8px;
+}
+.input-group {
+    flex-grow:1;
+    flex-basis: 20%; 
+    flex-grow: 0; 
+    flex-shrink: 0; 
+    min-width: 0; 
+}
+
+
+
+
+.small .input-group {
+    flex-basis: 20%; 
+}
+
+.full .input-group {
+    flex-basis: 100%; 
+}
+
+.input-group input[type="radio"],
+.input-group input[type="checkbox"] {
+    display: none;
+}
+.input-group label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    padding: 12px 0;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.input-group label:hover {
+    background-color: #007bff23;
+    border-color: #007bff23;
+    transform: scale(0.95);
+}
+
+
+.input-group.multi label::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 30px;
+    border: 2px solid #ddd;
+    background-color: #fff;
+    top: 14px;
+    right: 8px;
+    transform: translateY(-9px);
+}
+
+.input-group label::before {
+    content: '';
+    display: block;
+    width: 34px;
+    height: 34px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 4px auto;
+    transition: border-color 0.2s;
+    background-image: var(--icon-url);
+}
+
+.input-group input[type="radio"]:checked + label,
+.input-group input[type="checkbox"]:checked + label {
+    background-color: #007bff23;
+    border-color: var(--primary-color);
+}
+.input-group input[type="radio"]:checked + label::before,
+.input-group input[type="checkbox"]:checked + label::before {
+    border-color: var(--primary-color);
+}
+
+.input-group.multi input[type="radio"]:checked + label::after,
+.input-group.multi input[type="checkbox"]:checked + label::after {
+    border-color: var(--primary-color);
+    background: var(--primary-color) url('img/checkmark.png') no-repeat center;
+    background-size: cover;
+}
+
+
+.input-field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 2px solid #ccc; /* Adds a border around the input-field */
+    padding: 10px; /* Adds some padding inside the border */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+    border-radius: 5px; /* Optional: adds rounded corners to the border */
+}
+
+.input-field label {
+    flex: 1; /* This makes the label take as much space as available */
+    margin-right: 10px; /* Adds some space between label and input */
+    cursor: text;
+}
+
+.input-field input {
+    flex: 2; /* This makes the input take the remaining space */
+    width: 100%; /* Ensures the input field fills its flex container */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+    border: none; /* Removes default border from input */
+    font-size: 17px;
+    font-family: Arial;
+}
+
+.input-field input:focus {
+    outline: none; /* Removes the default outline */
+}
+
+.input-field:focus-within {
+    border: 2px solid var(--primary-color); /* Adds a blue border around the input-field when any child input is focused */
+}
+
+
+.button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 14px 20px;
+    border: 0;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 12px;
+    text-align: center;
+}
+.button:hover {
+    opacity: 0.9;
+}
+.button:active {
+    background: var(--primary-120);
+}
+.button.secondary {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #6C757D;
+}
+.button.secondary:hover {
+    background: #f0f0f0;
+}
+.button.full {
+    width: 100%;
+}
+.flex-header {
+    display: flex;
+    flex-direction: column;  
+    padding: 12px 12px;
+    flex-grow:1;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.flex-header p {
+    color: #6C757D;
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+}
+.flex-footer {
+    display: flex;
+    justify-content: center;     
+    padding: 20px 0;
+
+    @media only screen and (max-width: 700px) {
+        padding: 12px 0;
+    }
+
+    gap: 12px;
+}
+.flex-footer > a {
+    flex-grow:1;
+    padding: 20px;
+}
+.slide-in-right {
+    animation: slideInFromRight 0.3s forwards;
+}
+.slide-in-left {
+    animation: slideInFromLeft 0.3s forwards;
+}
+.slide-out-left {
+    animation: slideOutToLeft 0.3s forwards;
+}
+.slide-out-right {
+    animation: slideOutToRight 0.3s forwards;
+}
+/* Apply slide up to the current fieldset */
+.slide-up {
+    animation: slideUp 0.5s forwards;
+}
+
+/* Apply slide down to the success view */
+.slide-down {
+    animation: slideDown 0.5s forwards;
+}
+
+/* Hide success view by default */
+.success-view {
+    display: none;
+}
+
+.success-view .flex-header {
+    margin-top: 40px;
+}
+
+.success {
+    display: block;
+    width: 64px;
+    height: 64px;
+    content:"";
+    background: transparent url('img/success.svg') center no-repeat;
+}
+
+.breadcrumb {
+    padding: 10px 0;
+}
+
+.breadcrumb ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+}
+
+.breadcrumb ul li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb ul li a {
+    text-decoration: none;
+}
+
+.breadcrumb ul li a:hover {
+    text-decoration: underline;
+}
+
+
+.breadcrumb ul li::after {
+    content: '/';
+    display: inline-block;
+    padding: 0 0.5rem;
+    color: #6C757D;
+}
+
+.breadcrumb ul li:last-of-type::after {
+    display: none;
+}
+
+
+
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.cookie-banner p {
+    margin: 0;
+    padding-right: 20px;
+}
+
+.cookie-banner button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.cookie-banner button:hover {
+    background-color: #45a049;
+}
+
+
+/* Responsive */
+
+@media only screen and (max-width: 700px) {
+
+    .funnelform {
+        flex-grow:1;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    
+
+    .infobar span:last-child {
+        display:none;
+    }
+
+
+    .input-group {
+        flex-basis: 45%; 
+    }
+
+    .input-group.mfull {
+        flex-basis: 100%;
+    }
+
+
+    .input-group.mfull label::before {
+        position: absolute;
+        top: 0;
+        left: 10px;
+    }
+
+    .input-group.multi label::after {
+        top: 18px;
+    }
+    
+}
+
+
+
+
+/* Animations */
+
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slideOutToLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Add this CSS to your stylesheet */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 90%;
+    max-width: 960px;
+    height: 100%;
+    background: #fff;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.content.sidenav {
+    flex-direction: row;
+}
+
+.content.sidenav aside {
+    flex-grow: 1;
+}
+
+.content.sidenav main {
+    flex-grow: 3;
+}
+
+
+
+/* Style for the aside element to act as a side navigation */
+aside {
+    font-size: 14px;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    width: 240px;
+    border-right: 1px solid rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+aside ul li {
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+aside ul li a:hover {
+    background-color: #ebeff3;
+}
+
+/* Style for the main container to be centered */
+main {
+    flex-grow: 1; /* Allow main to take up remaining space */
+}
