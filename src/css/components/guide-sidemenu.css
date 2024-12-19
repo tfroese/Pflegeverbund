@@ -3,12 +3,11 @@
 /* Guide Sidemenu */
 .guide-sidemenu {
     background: var(--color-background-light);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-large);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     padding: 0.75rem;
     position: sticky;
-    /* Adjust top position to account for sticky nav */
-    top: calc(var(--navigation-height) + 2rem); /* Use navigation height */
+    top: calc(var(--navigation-height) + 2rem);
     z-index: var(--z-index-sidemenu);
 }
 
@@ -25,6 +24,24 @@
     gap: 0.25rem;
 }
 
+/* Overview link styles */
+.guide-sidemenu__overview {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.guide-sidemenu__overview .guide-sidemenu__item {
+    font-weight: 500;
+    color: var(--color-text);
+    padding: 0.5rem 0.75rem;
+}
+
+.guide-sidemenu__overview .guide-sidemenu__item:hover {
+    color: var(--color-primary);
+}
+
+/* Existing styles... */
 .guide-sidemenu__category {
     border-bottom: 1px solid var(--color-border);
 }

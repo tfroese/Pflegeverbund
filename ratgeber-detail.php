@@ -69,7 +69,7 @@ renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
                 
                 <?php if ($guide['image_path']): ?>
                     <div class="guide-detail__image">
-                        <img src="<?= htmlspecialchars($guide['image_path']) ?>" 
+                        <img src="<?= IMG_URL . htmlspecialchars($guide['image_path']) ?>" 
                              alt="<?= htmlspecialchars($guide['headline']) ?>">
                     </div>
                 <?php endif; ?>

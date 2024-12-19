@@ -8,7 +8,7 @@ function renderGuidePreview($guide) {
     <article class="guide-preview">
         <?php if ($guide['image_path']): ?>
             <div class="guide-preview__image">
-                <img src="<?= htmlspecialchars($guide['image_path']) ?>" 
+                <img src="<?= IMG_URL . htmlspecialchars($guide['image_path']) ?>" 
                      alt="<?= htmlspecialchars($guide['headline']) ?>"
                      loading="lazy">
             </div>

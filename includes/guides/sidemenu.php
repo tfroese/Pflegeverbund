@@ -26,11 +26,19 @@ function renderGuideSidemenu($categories, $activeGuide = null) {
         <h2 class="guide-sidemenu__title">Kategorien</h2>
         
         <nav class="guide-sidemenu__nav">
+            <!-- Overview link -->
+            <div class="guide-sidemenu__overview">
+                <a href="<?= SITE_PATH ?>/ratgeber" 
+                   class="guide-sidemenu__item <?= !$activeGuide ? 'is-current' : '' ?>">
+                    Übersicht
+                </a>
+            </div>
+
             <?php 
             foreach ($categories as $index => $category): 
                 $isActive = $activeGuide ? 
                     $activeGuide['category_slug'] === $category['slug'] : 
-                    $index === 0; // Open first category if no active guide
+                    false;
                 $categoryId = 'category-' . $category['slug'];
             ?>
                 <div class="guide-sidemenu__category">
