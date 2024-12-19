@@ -11,4 +11,7 @@
 @import 'components/breadcrumb.css';
 @import 'components/topbar.css';
 @import 'components/error-page.css';
+@import 'components/guides.css';
+@import 'components/guide-sidemenu.css';
+@import 'components/guide-layout.css';
 @import 'responsive.css';

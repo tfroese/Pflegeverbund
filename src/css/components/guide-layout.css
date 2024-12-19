@@ -1,0 +1,12 @@
+.guide-layout {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (min-width: 992px) {
+    .guide-layout {
+        grid-template-columns: 300px 1fr;
+        align-items: start;
+    }
+}

@@ -1,0 +1,121 @@
+/* Guide Sidemenu */
+.guide-sidemenu {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 0.75rem;
+    position: sticky;
+    top: 2rem;
+}
+
+.guide-sidemenu__title {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.guide-sidemenu__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.guide-sidemenu__category {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.guide-sidemenu__category:last-child {
+    border-bottom: none;
+}
+
+.guide-sidemenu__toggle {
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+.guide-sidemenu__toggle:hover {
+    color: var(--color-primary);
+}
+
+.guide-sidemenu__icon {
+    width: 10px;
+    height: 10px;
+    position: relative;
+}
+
+.guide-sidemenu__icon::before,
+.guide-sidemenu__icon::after {
+    content: '';
+    position: absolute;
+    background-color: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.guide-sidemenu__icon::before {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.guide-sidemenu__icon::after {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+}
+
+.guide-sidemenu__toggle[aria-expanded="true"] .guide-sidemenu__icon::after {
+    transform: translateX(-50%) scaleY(0);
+}
+
+.guide-sidemenu__items {
+    display: none;
+    padding: 0 0 0.5rem 0.75rem;
+}
+
+.guide-sidemenu__items.is-visible {
+    display: block;
+}
+
+.guide-sidemenu__item {
+    display: block;
+    padding: 0.375rem 0.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    border-left: 2px solid var(--color-border);
+    transition: all 0.2s ease;
+    margin-bottom: 0.125rem;
+}
+
+.guide-sidemenu__item:last-child {
+    margin-bottom: 0;
+}
+
+.guide-sidemenu__item:hover {
+    color: var(--color-primary);
+    border-left-color: var(--color-primary);
+    padding-left: 0.75rem;
+}
+
+.guide-sidemenu__item.is-current {
+    color: var(--color-primary);
+    font-weight: 500;
+    border-left-color: var(--color-primary);
+    padding-left: 0.75rem;
+}

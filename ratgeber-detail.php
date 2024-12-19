@@ -1,9 +1,10 @@
 <?php
 require_once 'includes/config.php';
 require_once 'includes/functions.php';
-require_once 'includes/guide-functions.php';
-require_once 'includes/seo-functions.php';
-require_once 'includes/guide-schema.php';
+require_once 'includes/guides/guides.php';
+require_once 'includes/guides/categories.php';
+require_once 'includes/guides/sidemenu.php';  // Update this line
+require_once 'includes/utils/date.php';
 
 $slug = isset($_GET['slug']) ? $_GET['slug'] : '';
 $guide = getGuideBySlug($slug);
@@ -14,22 +15,19 @@ if (!$guide) {
     exit;
 }
 
+// Get all categories for sidemenu
+$categories = getGuideCategories();
+
+$pageTitle = $guide['headline'] . ' - Ratgeber - ' . SITE_NAME;
+$pageDescription = $guide['subheadline'] ?? substr(strip_tags($guide['content']), 0, 160);
+
 // Generate breadcrumb items
 $breadcrumbItems = [
     ['label' => 'Home', 'url' => SITE_PATH . '/'],
     ['label' => 'Ratgeber', 'url' => SITE_PATH . '/ratgeber'],
-    ['label' => $guide['headline'], 'url' => SITE_PATH . '/ratgeber/' . $guide['link']]
+    ['label' => $guide['category_name'], 'url' => SITE_PATH . '/ratgeber/kategorie/' . $guide['category_slug']],
+    ['label' => $guide['headline'], 'url' => '#']
 ];
-
-// Generate SEO meta tags
-$pageTitle = $guide['headline'] . ' - Ratgeber - ' . SITE_NAME;
-$pageDescription = $guide['subheadline'] ?? substr(strip_tags($guide['content']), 0, 160);
-
-// Generate Schema.org markup
-$schemaMarkup = generateSchemaMarkup([
-    generateGuideSchema($guide),
-    generateBreadcrumbSchema($breadcrumbItems)
-]);
 
 // Start output buffering
 ob_start();
@@ -38,44 +36,49 @@ renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
 ?>
 
 <main class="main-content">
-    <article class="guide-detail" itemscope itemtype="https://schema.org/Article">
-        <div class="container">
-            <header class="guide-detail__header">
-                <h1 class="guide-detail__title" itemprop="headline">
-                    <?= htmlspecialchars($guide['headline']) ?>
-                </h1>
+    <div class="container">
+        <div class="guide-layout">
+            <?php renderGuideSidemenu($categories, $guide); ?>
+            
+            <article class="guide-detail">
+                <header class="guide-detail__header">
+                    <div class="guide-detail__category">
+                        <a href="<?= SITE_PATH ?>/ratgeber/kategorie/<?= htmlspecialchars($guide['category_slug']) ?>">
+                            <?= htmlspecialchars($guide['category_name']) ?>
+                        </a>
+                    </div>
+                    
+                    <h1 class="guide-detail__title"><?= htmlspecialchars($guide['headline']) ?></h1>
+                    
+                    <?php if ($guide['subheadline']): ?>
+                        <p class="guide-detail__subtitle"><?= htmlspecialchars($guide['subheadline']) ?></p>
+                    <?php endif; ?>
+                    
+                    <div class="guide-detail__meta">
+                        <time datetime="<?= $guide['published_on'] ?>">
+                            Veröffentlicht am <?= formatDate($guide['published_on']) ?>
+                        </time>
+                        <?php if ($guide['updated_on'] > $guide['published_on']): ?>
+                            <time datetime="<?= $guide['updated_on'] ?>">
+                                Aktualisiert am <?= formatDate($guide['updated_on']) ?>
+                            </time>
+                        <?php endif; ?>
+                    </div>
+                </header>
                 
-                <?php if ($guide['subheadline']): ?>
-                    <p class="guide-detail__subtitle" itemprop="description">
-                        <?= htmlspecialchars($guide['subheadline']) ?>
-                    </p>
+                <?php if ($guide['image_path']): ?>
+                    <div class="guide-detail__image">
+                        <img src="<?= htmlspecialchars($guide['image_path']) ?>" 
+                             alt="<?= htmlspecialchars($guide['headline']) ?>">
+                    </div>
                 <?php endif; ?>
                 
-                <div class="guide-detail__meta">
-                    <time datetime="<?= $guide['published_on'] ?>" itemprop="datePublished">
-                        Veröffentlicht am <?= formatDate($guide['published_on']) ?>
-                    </time>
-                    <?php if ($guide['updated_on'] > $guide['published_on']): ?>
-                        <time datetime="<?= $guide['updated_on'] ?>" itemprop="dateModified">
-                            Aktualisiert am <?= formatDate($guide['updated_on']) ?>
-                        </time>
-                    <?php endif; ?>
+                <div class="guide-detail__content">
+                    <?= $guide['content'] ?>
                 </div>
-            </header>
-            
-            <?php if ($guide['image_path']): ?>
-                <div class="guide-detail__image">
-                    <img src="<?= htmlspecialchars($guide['image_path']) ?>" 
-                         alt="<?= htmlspecialchars($guide['headline']) ?>"
-                         itemprop="image">
-                </div>
-            <?php endif; ?>
-            
-            <div class="guide-detail__content" itemprop="articleBody">
-                <?= $guide['content'] ?>
-            </div>
+            </article>
         </div>
-    </article>
+    </div>
 </main>
 
 <?php

@@ -3,11 +3,28 @@ require_once __DIR__ . '/../includes/database.php';
 
 function executeSQLFile($pdo, $filepath) {
     try {
+        // Read file content
         $sql = file_get_contents($filepath);
         if ($sql === false) {
             throw new Exception("Error reading file: $filepath");
         }
-        $pdo->exec($sql);
+
+        // Split into individual statements
+        $statements = array_filter(
+            array_map(
+                'trim',
+                explode(';', $sql)
+            ),
+            'strlen'
+        );
+
+        // Execute each statement separately
+        foreach ($statements as $statement) {
+            if (!empty($statement)) {
+                $pdo->exec($statement);
+            }
+        }
+        
         echo "Executed: $filepath\n";
     } catch (Exception $e) {
         die("Error executing $filepath: " . $e->getMessage() . "\n");
@@ -29,24 +46,26 @@ try {
     // Connect to the specific database
     $pdo->exec("USE " . DB_NAME);
     
-    // Drop existing tables if they exist
+    // Drop existing tables in correct order (respect foreign keys)
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 0");
+    $pdo->exec("DROP TABLE IF EXISTS guides");
+    $pdo->exec("DROP TABLE IF EXISTS guide_categories");
     $pdo->exec("DROP TABLE IF EXISTS faq_questions");
     $pdo->exec("DROP TABLE IF EXISTS faq_categories");
-    $pdo->exec("DROP TABLE IF EXISTS guides");
-    $pdo->exec("DROP TABLE IF EXISTS admin_users");
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 1");
     echo "Existing tables dropped\n";
     
-    // Schema files
+    // Schema files in correct order
     $schemaFiles = [
-        __DIR__ . '/../sql/schema/01_categories.sql',
-        __DIR__ . '/../sql/schema/02_questions.sql',
+        __DIR__ . '/../sql/schema/01_faq_categories.sql',
+        __DIR__ . '/../sql/schema/02_faq_questions.sql',
         __DIR__ . '/../sql/schema/03_guides.sql'
     ];
     
-    // Data files
+    // Data files in correct order
     $dataFiles = [
-        __DIR__ . '/../sql/data/01_categories.sql',
-        __DIR__ . '/../sql/data/02_questions.sql',
+        __DIR__ . '/../sql/data/01_faq_categories.sql',
+        __DIR__ . '/../sql/data/02_faq_questions.sql',
         __DIR__ . '/../sql/data/03_guides.sql'
     ];
     

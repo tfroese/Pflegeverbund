@@ -1,13 +1,22 @@
 <?php
 require_once 'database.php';
 
-function getPublishedGuides($limit = null, $offset = 0) {
+function getGuideCategories() {
+    $db = getDbConnection();
+    $sql = "SELECT * FROM guide_categories ORDER BY name ASC";
+    $stmt = $db->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getPublishedGuidesByCategory($limit = null, $offset = 0) {
     $db = getDbConnection();
     $currentDate = date('Y-m-d H:i:s');
     
-    $sql = "SELECT * FROM guides 
-            WHERE published_on <= :current_date 
-            ORDER BY published_on DESC";
+    $sql = "SELECT g.*, c.name as category_name, c.slug as category_slug 
+            FROM guides g 
+            JOIN guide_categories c ON g.category_id = c.id 
+            WHERE g.published_on <= :current_date 
+            ORDER BY g.published_on DESC";
     
     if ($limit !== null) {
         $sql .= " LIMIT :limit OFFSET :offset";
@@ -22,16 +31,33 @@ function getPublishedGuides($limit = null, $offset = 0) {
     }
     
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $guides = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Group guides by category
+    $guidesByCategory = [];
+    foreach ($guides as $guide) {
+        $categoryName = $guide['category_name'];
+        if (!isset($guidesByCategory[$categoryName])) {
+            $guidesByCategory[$categoryName] = [
+                'slug' => $guide['category_slug'],
+                'guides' => []
+            ];
+        }
+        $guidesByCategory[$categoryName]['guides'][] = $guide;
+    }
+    
+    return $guidesByCategory;
 }
 
 function getGuideBySlug($slug) {
     $db = getDbConnection();
     $currentDate = date('Y-m-d H:i:s');
     
-    $sql = "SELECT * FROM guides 
-            WHERE link = :slug 
-            AND published_on <= :current_date";
+    $sql = "SELECT g.*, c.name as category_name, c.slug as category_slug 
+            FROM guides g 
+            JOIN guide_categories c ON g.category_id = c.id 
+            WHERE g.link = :slug 
+            AND g.published_on <= :current_date";
     
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':slug', $slug);
@@ -43,31 +69,6 @@ function getGuideBySlug($slug) {
 
 function formatDate($date) {
     return date('d.m.Y', strtotime($date));
-}
-
-function createUrlSlug($headline) {
-    // Convert to lowercase and replace spaces with underscores
-    $slug = mb_strtolower($headline, 'UTF-8');
-    
-    // Replace German special characters
-    $replacements = [
-        'ä' => 'ae',
-        'ö' => 'oe',
-        'ü' => 'ue',
-        'ß' => 'ss'
-    ];
-    $slug = str_replace(array_keys($replacements), array_values($replacements), $slug);
-    
-    // Remove all characters except letters, numbers, and underscores
-    $slug = preg_replace('/[^a-z0-9_]+/', '_', $slug);
-    
-    // Remove multiple consecutive underscores
-    $slug = preg_replace('/_+/', '_', $slug);
-    
-    // Remove leading and trailing underscores
-    $slug = trim($slug, '_');
-    
-    return $slug;
 }
 
 function renderGuidePreview($guide) {
@@ -82,6 +83,12 @@ function renderGuidePreview($guide) {
         <?php endif; ?>
         
         <div class="guide-preview__content">
+            <div class="guide-preview__category">
+                <a href="<?= SITE_PATH ?>/ratgeber/kategorie/<?= htmlspecialchars($guide['category_slug']) ?>">
+                    <?= htmlspecialchars($guide['category_name']) ?>
+                </a>
+            </div>
+            
             <h2 class="guide-preview__title">
                 <a href="<?= SITE_PATH ?>/ratgeber/<?= htmlspecialchars($guide['link']) ?>">
                     <?= htmlspecialchars($guide['headline']) ?>
