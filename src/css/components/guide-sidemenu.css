@@ -1,11 +1,15 @@
+@import '../variables.css';
+
 /* Guide Sidemenu */
 .guide-sidemenu {
-    background: white;
+    background: var(--color-background-light);
     border-radius: var(--border-radius);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     padding: 0.75rem;
     position: sticky;
-    top: 2rem;
+    /* Adjust top position to account for sticky nav */
+    top: calc(var(--navigation-height) + 2rem); /* Use navigation height */
+    z-index: var(--z-index-sidemenu);
 }
 
 .guide-sidemenu__title {

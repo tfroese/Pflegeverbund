@@ -1,6 +1,6 @@
 <?php
 $newsletterTitle = 'Bleiben Sie informiert!';
-$newsletterDescription = 'Abonnieren Sie unseren Newsletter und erhalten Sie regelmäßig aktuelle Informationen rund um das Thema Pflege, Pflegegrade und Unterstützungsmöglichkeiten.';
+$newsletterDescription = 'Abonnieren Sie unseren Newsletter und erhalten Sie regelmäßig aktuelle Infos zu Pflege, Pflegegraden, Unterstützungsmöglichkeiten und Gesetzesänderungen.';
 ?>
 
 <section class="newsletter-section">
