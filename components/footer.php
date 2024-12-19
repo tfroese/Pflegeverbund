@@ -37,8 +37,8 @@
 <script>
     // Global configuration
     window.JS_URL = '<?=JS_URL;?>';
-    window.APP_VERSION = '<?=time();?>'; // Add timestamp for cache busting
+    window.DEV_MODE = <?=json_encode(DEV_MODE);?>;
 </script>
-<script type="module" src="<?=JS_URL;?>/main.js?v=<?=time();?>"></script>
+<script type="module" src="<?=asset_url(JS_URL . '/main.js'); ?>"></script>
 </body>
 </html>
