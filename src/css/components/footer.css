@@ -10,25 +10,35 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--container-padding);
 }
 
-.footer__logo img {
+.footer__column h3 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.footer__logo {
   max-height: 40px;
 }
 
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 .footer__links a {
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
 }
 
 .footer__links a:hover {
-  color: var(--color-secondary);
+  color: white;
 }
 
 @media (min-width: 768px) {

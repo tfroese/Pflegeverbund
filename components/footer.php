@@ -1,3 +1,6 @@
+<?php
+// Remove newsletter form from footer and clean up the structure
+?>
 <footer class="footer">
     <div class="footer__container">
         <div class="footer__column">
@@ -22,7 +25,11 @@
         </div>
         
         <div class="footer__column">
-            <?php include 'newsletter-form.php'; ?>
+            <h3>Häufig gestellte Fragen</h3>
+            <div class="footer__links">
+                <a href="<?=SITE_PATH;?>/faq/pflegeleistungen">Stehen mir Pflegeleistungen zu?</a>
+                <a href="<?=SITE_PATH;?>/faq/pflegedienst">Wie kann ich die Leistungen des Pflegedienstes in Anspruch nehmen?</a>
+            </div>
         </div>
     </div>
 </footer>

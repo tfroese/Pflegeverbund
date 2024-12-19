@@ -25,6 +25,9 @@ if (isset($content)) {
     echo $content;
 }
 
+// Include newsletter section
+include __DIR__ . '/newsletter-section.php';
+
 // Include footer
 include __DIR__ . '/footer.php';
 ?>
