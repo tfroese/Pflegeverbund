@@ -5,6 +5,8 @@
   --color-accent: #28a745;
   --color-background: #ffffff;
   --color-background-light: #f8f9fa;
+  --color-background-dark: #313234;
+  --color-background-active: #1d68ff2e;
   --color-text: #333333;
   --color-text-secondary: #666666;
   --color-link: #007bff;
@@ -34,6 +36,7 @@
   /* Z-index layers */
   --z-index-cookie-banner: 1000;
   --z-index-navigation: 100;
+  --z-index-faq-search: 50;
   --z-index-sidemenu: 1;
   --z-index-modal: 900;
   --z-index-overlay: 800;

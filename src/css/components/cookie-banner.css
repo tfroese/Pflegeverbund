@@ -5,7 +5,6 @@
   bottom: 2rem;
   left: 2rem;
   right: 2rem;
-  max-width: 800px;
   background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -32,6 +31,7 @@
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--container-padding);
+  text-align: center;
 }
 
 .cookie-banner__buttons {
@@ -39,6 +39,7 @@
   gap: 1rem;
   margin-top: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .cookie-banner__settings {

@@ -120,7 +120,6 @@
 
   .cookie-banner__buttons {
     flex-direction: row;
-    justify-content: flex-end;
   }
 
   .contact-form {

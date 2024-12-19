@@ -1,12 +1,12 @@
 <?php
-$newsletterTitle = 'Bleiben Sie informiert!';
+$newsletterTitle = 'Newsletter';
 $newsletterDescription = 'Abonnieren Sie unseren Newsletter und erhalten Sie regelmäßig aktuelle Infos zu Pflege, Pflegegraden, Unterstützungsmöglichkeiten und Gesetzesänderungen.';
 ?>
 
 <section class="newsletter-section">
     <div class="newsletter-section__container">
         <div class="newsletter-section__content">
-            <h2 class="newsletter-section__title"><?= htmlspecialchars($newsletterTitle) ?></h2>
+            <h3 class="newsletter-section__title"><?= htmlspecialchars($newsletterTitle) ?></h3>
             <p class="newsletter-section__description"><?= htmlspecialchars($newsletterDescription) ?></p>
         </div>
 

@@ -25,16 +25,19 @@ renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
 
 <main class="main-content">
     <div class="container">
-        <h1 class="page-title">Häufig gestellte Fragen (FAQ)</h1>
-        
-        <div class="faq-search">
-            <div class="faq-search__container">
-                <input type="text" 
-                       id="faqSearch" 
-                       class="faq-search__input" 
-                       placeholder="Suchen Sie nach Fragen..."
-                       aria-label="FAQ durchsuchen">
-                <div id="searchResults" class="faq-search__results" hidden></div>
+
+        <div class="faq-header">
+            <h1 class="page-title">Häufig gestellte Fragen (FAQ)</h1>
+            
+            <div class="faq-search">
+                <div class="faq-search__container">
+                    <input type="text" 
+                            id="faqSearch" 
+                            class="faq-search__input" 
+                            placeholder="Suchen Sie nach Fragen..."
+                            aria-label="FAQ durchsuchen">
+                    <div id="searchResults" class="faq-search__results" hidden></div>
+                </div>
             </div>
         </div>
         
