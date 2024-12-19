@@ -1,0 +1,102 @@
+/* Embedded FAQ styles */
+.embedded-faq {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--color-background-light);
+    border-radius: var(--border-radius);
+}
+
+.embedded-faq__title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+}
+
+.embedded-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.embedded-faq__item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    background: white;
+}
+
+.embedded-faq__question {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.embedded-faq__question:hover {
+    background-color: var(--color-background-light);
+}
+
+.embedded-faq__icon {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.embedded-faq__icon::before,
+.embedded-faq__icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--color-text);
+    transition: transform 0.3s ease;
+}
+
+.embedded-faq__icon::before {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.embedded-faq__icon::after {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+}
+
+.embedded-faq__question[aria-expanded="true"] .embedded-faq__icon::after {
+    transform: translateX(-50%) rotate(90deg);
+}
+
+.embedded-faq__answer {
+    padding: 0 1rem 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    overflow: hidden;
+    transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.embedded-faq__content {
+    margin-bottom: 1rem;
+}
+
+.embedded-faq__more {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.embedded-faq__more:hover {
+    text-decoration: underline;
+}

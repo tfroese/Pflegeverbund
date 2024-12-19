@@ -5,6 +5,7 @@ require_once 'includes/guides/guides.php';
 require_once 'includes/guides/categories.php';
 require_once 'includes/guides/sidemenu.php';
 require_once 'includes/utils/date.php';
+require_once 'includes/shortcodes.php'; // Add this line
 
 $slug = isset($_GET['slug']) ? $_GET['slug'] : '';
 $guide = getGuideBySlug($slug);
@@ -74,7 +75,7 @@ renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
                 <?php endif; ?>
                 
                 <div class="guide-detail__content">
-                    <?= $guide['content'] ?>
+                    <?= process_shortcodes($guide['content']) ?>
                 </div>
             </article>
         </div>
