@@ -8,7 +8,6 @@ nav[aria-label="breadcrumb"] {
 .breadcrumb {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     padding: 1rem 0;
     font-size: 0.8rem;
     list-style: none;
@@ -16,7 +15,6 @@ nav[aria-label="breadcrumb"] {
 
 .breadcrumb-item {
     display: flex;
-    display: none;
     align-items: center;
 }
 
@@ -24,8 +22,7 @@ nav[aria-label="breadcrumb"] {
     display: inline-block;
     content: "/";
     margin: 0 0.5rem;
-    color: var(--color-text-muted, #6c757d);
-    color: red;
+    color: var(--color-text-secondary);
 }
 
 .breadcrumb a {
