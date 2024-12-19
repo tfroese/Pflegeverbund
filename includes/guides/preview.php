@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__ . '/../utils/date.php';
+/**
+ * Guide preview rendering functions
+ */
 
 function renderGuidePreview($guide) {
     ?>
@@ -45,4 +47,3 @@ function renderGuidePreview($guide) {
     </article>
     <?php
 }
-?>

@@ -7,6 +7,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^faq/([0-9]+)/([^/]+)/?$ faq-detail.php?id=$1 [L,QSA]
 
+# Handle guide category pages
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ratgeber/kategorie/([^/]+)/?$ ratgeber-category.php?slug=$1 [L,QSA]
+
 # Existing rules...
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

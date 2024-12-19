@@ -3,7 +3,7 @@ require_once 'includes/config.php';
 require_once 'includes/functions.php';
 require_once 'includes/guides/guides.php';
 require_once 'includes/guides/categories.php';
-require_once 'includes/guides/sidemenu.php';  // Update this line
+require_once 'includes/guides/sidemenu.php';
 require_once 'includes/utils/date.php';
 
 $slug = isset($_GET['slug']) ? $_GET['slug'] : '';
