@@ -5,7 +5,6 @@
         </a>
         <div class="main-nav__menu">
             <a href="<?=SITE_PATH;?>/ratgeber">Ratgeber</a>
-            <a href="<?=SITE_PATH;?>/leistungen">Leistungen</a>
             <a href="<?=SITE_PATH;?>/faq">Häufige Fragen (FAQ)</a>
         </div>
     </div>
