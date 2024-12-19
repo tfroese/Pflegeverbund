@@ -59,7 +59,8 @@ try {
     $schemaFiles = [
         __DIR__ . '/../sql/schema/01_faq_categories.sql',
         __DIR__ . '/../sql/schema/02_faq_questions.sql',
-        __DIR__ . '/../sql/schema/03_guides.sql'
+        __DIR__ . '/../sql/schema/03_guides.sql',
+        __DIR__ . '/../sql/schema/04_newsletter.sql'
     ];
     
     // Data files in correct order
