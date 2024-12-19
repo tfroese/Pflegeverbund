@@ -6,6 +6,7 @@
         <div class="main-nav__menu">
             <a href="<?=SITE_PATH;?>/ratgeber">Ratgeber</a>
             <a href="<?=SITE_PATH;?>/faq">Häufige Fragen (FAQ)</a>
+            <a href="<?=SITE_PATH;?>/kontakt">Kontakt</a>
         </div>
     </div>
 </nav>
