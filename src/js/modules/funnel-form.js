@@ -1,59 +1,50 @@
-$(document).ready(function() {
+import { $, $$ } from '../utils/dom.js';
 
+export function initHeaderForm() {
+    const form = $('#questionnaireForm');
+    if (!form) return;
 
-    /* funnel */
-    var currentFieldset = 0;
-    var $fieldsets = $('fieldset');
-    var skipLocationFieldset = false;
+    let currentFieldset = 0;
+    const fieldsets = $$('fieldset');
+    let skipLocationFieldset = false;
 
     function showFieldset(index) {
-        $fieldsets.each(function(i) {
+        fieldsets.forEach((fieldset, i) => {
             if (i === index) {
-                $(this).addClass('active');
+                fieldset.classList.add('active');
             } else {
-                $(this).removeClass('active');
+                fieldset.classList.remove('active');
             }
         });
     }
 
-    function validateFieldset($fieldset) {
-        var isValid = true;
-        var $invalidField = null;
+    function validateFieldset(fieldset) {
+        let isValid = true;
+        let invalidField = null;
 
-        // Durchläuft alle Felder, die als "required" markiert sind
-        $fieldset.find('[required]').each(function() {
-            var $input = $(this);
-
-            // Für Radio-Buttons: prüfe, ob einer in der Gruppe ausgewählt ist
-            if ($input.is(':radio')) {
-                var name = $input.attr('name'); // Name der Radio-Gruppe
-                if ($fieldset.find('input[name="' + name + '"]:checked').length === 0) {
+        // Check all required fields
+        const requiredFields = fieldset.querySelectorAll('[required]');
+        requiredFields.forEach(input => {
+            // For radio buttons
+            if (input.type === 'radio') {
+                const name = input.name;
+                if (!fieldset.querySelector(`input[name="${name}"]:checked`)) {
                     isValid = false;
-                    if (!$invalidField) {
-                        $invalidField = $input;
-                    }
+                    if (!invalidField) invalidField = input;
                 }
             }
-            // Für alle anderen Felder (Text, Checkboxen, etc.)
-            else if (!$input.val() || ($input.is(':checkbox') && !$input.is(':checked'))) {
+            // For other fields
+            else if (!input.value || (input.type === 'checkbox' && !input.checked)) {
                 isValid = false;
-                if (!$invalidField) {
-                    $invalidField = $input;
-                }
+                if (!invalidField) invalidField = input;
             }
         });
 
-        // Wenn ein ungültiges Feld gefunden wurde
-        if ($invalidField) {
-            // Scrollt zum ungültigen Feld
-            $('html, body').animate({
-                scrollTop: $invalidField.offset().top
-            }, 500);
-            // Setzt den Fokus auf das ungültige Feld
-            $invalidField.focus();
+        if (invalidField) {
+            invalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            invalidField.focus();
 
-            // Zeigt eine Warnung an, wenn es ein Radio-Button ist
-            if ($invalidField.is(':radio')) {
+            if (invalidField.type === 'radio') {
                 alert('Bitte wählen Sie eine Option aus.');
             }
         }
@@ -63,20 +54,19 @@ $(document).ready(function() {
 
     function nextFieldset(event) {
         event.preventDefault();
-        var $current = $fieldsets.eq(currentFieldset);
+        const current = fieldsets[currentFieldset];
 
-        // Hier wird die Validierung aufgerufen
-        if (!validateFieldset($current)) {
-            //alert('Bitte füllen Sie alle erforderlichen Felder aus.');
+        if (!validateFieldset(current)) {
             return;
         }
 
-        // Spezifische Logik für das dritte Fieldset
+        // Check for free products only
         if (currentFieldset === 2) {
-            var isOnlyFreeProductsChecked = $('#lead_topic_free_products').is(':checked') &&
-                !$('#lead_topic_free_consulting').is(':checked') &&
-                !$('#lead_topic_housekeeping').is(':checked');
-            skipLocationFieldset = isOnlyFreeProductsChecked;
+            const freeProductsOnly = 
+                $('#lead_topic_free_products')?.checked &&
+                !$('#lead_topic_free_consulting')?.checked &&
+                !$('#lead_topic_housekeeping')?.checked;
+            skipLocationFieldset = freeProductsOnly;
         }
 
         animateFieldsets(true);
@@ -87,14 +77,9 @@ $(document).ready(function() {
         animateFieldsets(false);
     }
 
-
-
-
-
     function animateFieldsets(forward) {
-        var $current = $fieldsets.eq(currentFieldset);
-        var $next;
-        var $prev;
+        const current = fieldsets[currentFieldset];
+        let next, prev;
 
         if (forward) {
             if (skipLocationFieldset && currentFieldset === 2) {
@@ -102,17 +87,19 @@ $(document).ready(function() {
             } else {
                 currentFieldset++;
             }
-            if (currentFieldset >= $fieldsets.length) {
-                currentFieldset = $fieldsets.length - 1;
+            if (currentFieldset >= fieldsets.length) {
+                currentFieldset = fieldsets.length - 1;
                 return;
             }
-            $next = $fieldsets.eq(currentFieldset);
-            $current.addClass('slide-out-left').one('animationend', function() {
-                $current.removeClass('active slide-out-left');
-            });
-            $next.addClass('slide-in-right active').one('animationend', function() {
-                $next.removeClass('slide-in-right');
-            });
+            next = fieldsets[currentFieldset];
+            current.classList.add('slide-out-left');
+            current.addEventListener('animationend', () => {
+                current.classList.remove('active', 'slide-out-left');
+            }, { once: true });
+            next.classList.add('slide-in-right', 'active');
+            next.addEventListener('animationend', () => {
+                next.classList.remove('slide-in-right');
+            }, { once: true });
         } else {
             if (skipLocationFieldset && currentFieldset === 4) {
                 currentFieldset -= 2;
@@ -123,86 +110,99 @@ $(document).ready(function() {
                 currentFieldset = 0;
                 return;
             }
-            $prev = $fieldsets.eq(currentFieldset);
-            $current.addClass('slide-out-right').one('animationend', function() {
-                $current.removeClass('active slide-out-right');
-            });
-            $prev.addClass('slide-in-left active').one('animationend', function() {
-                $prev.removeClass('slide-in-left');
-            });
+            prev = fieldsets[currentFieldset];
+            current.classList.add('slide-out-right');
+            current.addEventListener('animationend', () => {
+                current.classList.remove('active', 'slide-out-right');
+            }, { once: true });
+            prev.classList.add('slide-in-left', 'active');
+            prev.addEventListener('animationend', () => {
+                prev.classList.remove('slide-in-left');
+            }, { once: true });
         }
     }
 
-    $('.input-group input[type="radio"], .input-group input[type="checkbox"]').each(function() {
-        var $label = $(this).next('label');
-        var iconUrl = $(this).data('image');
-        if (iconUrl) {
-            $label.css('--icon-url', 'url(img/' + iconUrl + ')');
+    // Set up radio and checkbox icons
+    $$('.input-group input[type="radio"], .input-group input[type="checkbox"]').forEach(input => {
+        const label = input.nextElementSibling;
+        const iconUrl = input.dataset.image;
+        if (iconUrl && label) {
+            label.style.setProperty('--icon-url', `url(img/${iconUrl})`);
         }
     });
 
-    $('#questionnaireForm').on('submit', function(event) {
+    // Form submission
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        var formData = new FormData(this);
+        const formData = new FormData(form);
 
-        $.ajax({
-            url: 'send.php',
-            method: 'POST',
-            data: formData,
-            processData: false, // Verhindert, dass jQuery die Daten in einen Query-String umwandelt
-            contentType: false, // Setzt den Content-Type korrekt auf multipart/form-data
-            success: function(response) {
+        try {
+            const response = await fetch('api/funnel.send.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
                 showSuccessView();
-            },
-            error: function() {
+            } else {
                 alert('Es gab ein Problem beim Senden des Formulars. Bitte versuchen Sie es später erneut.');
             }
-        });
+        } catch (error) {
+            alert('Es gab ein Problem beim Senden des Formulars. Bitte versuchen Sie es später erneut.');
+        }
     });
 
     function showSuccessView() {
-        var $current = $fieldsets.eq(currentFieldset);
-        var $successView = $('#successView');
+        const current = fieldsets[currentFieldset];
+        const successView = $('#successView');
+        if (!successView) return;
 
-        $current.addClass('slide-up').one('animationend', function() {
-            $current.removeClass('active slide-up').hide();
-        });
-        $successView.addClass('slide-down').show().one('animationend', function() {
-            $successView.removeClass('slide-down');
-        });
+        current.classList.add('slide-up');
+        current.addEventListener('animationend', () => {
+            current.classList.remove('active', 'slide-up');
+            current.style.display = 'none';
+        }, { once: true });
+
+        successView.classList.add('slide-down');
+        successView.style.display = 'block';
+        successView.addEventListener('animationend', () => {
+            successView.classList.remove('slide-down');
+        }, { once: true });
     }
 
+    // Initialize
     showFieldset(currentFieldset);
 
-    $('[data-link]').on('click', function(event) {
-        var linkType = $(this).data('link');
-        if (linkType === 'next') {
-            nextFieldset(event);
-        } else if (linkType === 'back') {
-            previousFieldset(event);
-        }
-    });
-
-    $(document).on('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            if (currentFieldset < $fieldsets.length - 1) {
+    // Set up navigation buttons
+    $$('[data-link]').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const linkType = button.dataset.link;
+            if (linkType === 'next') {
                 nextFieldset(event);
-            } else {
-                $('#questionnaireForm').submit();
-            }
-        }
-    });
-
-    $(document).ready(function() {
-        $('#questionnaireForm').on('submit', function(e) {
-            var topicCheckboxes = $('input[type="checkbox"][name^="lead_topic_"]');
-            if (topicCheckboxes.filter(':checked').length === 0) {
-                e.preventDefault();
-                alert('Bitte wählen Sie mindestens ein Thema aus.');
-                return false;
+            } else if (linkType === 'back') {
+                previousFieldset(event);
             }
         });
     });
 
-});
+    // Handle Enter key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            if (currentFieldset < fieldsets.length - 1) {
+                nextFieldset(event);
+            } else {
+                form.requestSubmit();
+            }
+        }
+    });
+
+    // Validate topics on submit
+    form.addEventListener('submit', (e) => {
+        const topicCheckboxes = $$('input[type="checkbox"][name^="lead_topic_"]');
+        if (!Array.from(topicCheckboxes).some(cb => cb.checked)) {
+            e.preventDefault();
+            alert('Bitte wählen Sie mindestens ein Thema aus.');
+        }
+    });
+}
