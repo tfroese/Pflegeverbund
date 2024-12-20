@@ -6,11 +6,11 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background: var(--color-background-light);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
 }
 
 .header__content {

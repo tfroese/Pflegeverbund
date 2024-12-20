@@ -127,7 +127,7 @@ export function initHeaderForm() {
         const label = input.nextElementSibling;
         const iconUrl = input.dataset.image;
         if (iconUrl && label) {
-            label.style.setProperty('--icon-url', `url(img/${iconUrl})`);
+            label.style.setProperty('--icon-url', `url(src/images/form/${iconUrl})`);
         }
     });
 

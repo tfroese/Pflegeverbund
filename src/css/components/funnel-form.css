@@ -13,11 +13,8 @@
 }
 
 form#questionnaireForm {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     min-height: 480px;
-    width: 700px;
+    width: 100%;
     position: relative;
     overflow-x: hidden;
     margin: 12px;
@@ -52,8 +49,8 @@ legend {
     width: 100%;
     text-align: center;
     
-    font-weight: 700;
     font-style: normal;
+    font-weight: 800;
 
     @media only screen and (max-width: 700px) {
         font-size: 1.725em;

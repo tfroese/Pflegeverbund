@@ -120,7 +120,8 @@ function sendLeadImportRequest($lead_checked, $interface_password, $interface_br
 
     echo $requestXML;
 
-    $requestXML = utf8_decode($requestXML);
+    // Convert UTF-8 to ISO-8859-1 using mb_convert_encoding instead of utf8_decode
+    $requestXML = mb_convert_encoding($requestXML, 'ISO-8859-1', 'UTF-8');
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'https://lhp.pivacom.com/interface/XMLRPC_Broker.php');
@@ -139,6 +140,5 @@ function sendLeadImportRequest($lead_checked, $interface_password, $interface_br
     echo "<pre>";
     print_r($Result);
 }
-
 
 ?>
