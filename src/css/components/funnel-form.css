@@ -1,34 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
-* {
-    box-sizing: border-box;
-}
-
 :root {
     --primary-color: #0071ad;
     --primary-120: #005a8b; 
 }
 
 
-.container {
-    display: flex;
-    flex-direction: column;  
-    min-height: -webkit-fill-available;
-    min-height: fill-available;
-}
-
-.container.fullimg {
-    background: transparent url('img/header-bg.jpg') top center no-repeat;
-    background-size: cover;
-
-}
-
-
 .funnelform {
     display: flex;
-    justify-content: center;  
-    margin-top: 100px;
+    justify-content: center;
 }
 
 form#questionnaireForm {
@@ -182,7 +160,7 @@ legend {
 .input-group.multi input[type="radio"]:checked + label::after,
 .input-group.multi input[type="checkbox"]:checked + label::after {
     border-color: var(--primary-color);
-    background: var(--primary-color) url('img/checkmark.png') no-repeat center;
+    background: var(--primary-color) url('../src/images/form/checkmark.png') no-repeat center;
     background-size: cover;
 }
 
