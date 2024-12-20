@@ -9,6 +9,7 @@ import { initNewsletter } from './modules/newsletter/index.js';
 import { initStickyNav } from './modules/sticky-nav.js';
 import { initEmbeddedFAQ } from './modules/embedded-faq/index.js';
 import { initContactForm } from './modules/contact-form.js';
+import { initHeaderForm } from './modules/header-form.js';
 
 // Add cache buster to script URLs
 const scripts = document.querySelectorAll('script[src]');
@@ -28,6 +29,6 @@ onReady(() => {
     initStickyNav();
     initEmbeddedFAQ();
     initContactForm();
+    initHeaderForm();
     new FAQSearch();
-    // Analytics will be initialized by cookie banner if consent is given
 });

@@ -31,7 +31,8 @@ ob_start();
     <div class="header__content">
         <h1 class="header__title">Professionelle Pflegeberatung für Sie und Ihre Angehörigen</h1>
         <p class="header__subtitle">Wir unterstützen Sie bei der Beantragung von Pflegeleistungen und beraten Sie kostenlos zu allen Fragen rund um die Pflege.</p>
-        <a href="#contact-form" class="header__cta">Jetzt kostenlos beraten lassen</a>
+        <?php renderComponent('header-form'); ?>
+        Test
     </div>
 </header>
 
