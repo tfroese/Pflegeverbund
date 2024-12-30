@@ -1,9 +1,11 @@
 @import '../variables.css';
 
 .main-nav {
+    position: relative;
     background-color: var(--color-background);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     height: var(--navigation-height); /* Fixed height for consistent spacing */
+    z-index: 200;
 }
 
 .main-nav.is-sticky {

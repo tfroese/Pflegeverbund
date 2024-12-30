@@ -1,10 +1,12 @@
 @import '../variables.css';
 
 .top-bar {
+    position: relative;
     background-color: var(--color-background-light);
     padding: 0.25rem 0;
     font-size: 0.8rem;
     color: var(--color-text-secondary);
+    z-index: 150;
   }
 
   .top-bar a {

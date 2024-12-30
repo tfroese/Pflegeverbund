@@ -10,7 +10,7 @@
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
     <?php endif; ?>
-    <link rel="stylesheet" href="<?=asset_url(CSS_URL . '/main.css'); ?>">
+    <link rel="stylesheet" href="<?=asset_url(CSS_URL . '/main.css'); ?>?v=<?php echo time(); ?>">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
     <?php if (isset($schemaMarkup)) echo $schemaMarkup; ?>
 </head>

@@ -197,7 +197,7 @@
     overflow-y: auto;
 
 
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -209,6 +209,9 @@
     border-bottom: 1px solid var(--color-border);
     cursor: pointer;
     transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .faq-search__result:last-child {
@@ -229,6 +232,20 @@
     font-size: 0.875rem;
     color: var(--color-text-secondary);
     margin-top: 0.25rem;
+}
+
+.faq-search__result-content {
+    flex: 1;
+}
+
+.faq-search__result-arrow {
+    color: var(--color-text-secondary);
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
+
+.faq-search__result:hover .faq-search__result-arrow {
+    color: var(--color-text);
 }
 
 /* FAQ Detail page styles */

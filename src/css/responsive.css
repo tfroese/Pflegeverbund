@@ -62,10 +62,6 @@
   padding: 2rem var(--container-padding);
 }
 
-.footer__column {
-  text-align: center;
-}
-
 /* Cookie Banner */
 .cookie-banner {
   padding: 1rem;
