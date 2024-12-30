@@ -141,6 +141,6 @@
 /* Large Desktop (1200px and up) */
 @media (min-width: 1200px) {
   .container {
-    padding: 0 3rem;
+    padding: 2rem;
   }
 }

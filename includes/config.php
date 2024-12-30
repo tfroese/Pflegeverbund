@@ -10,7 +10,7 @@ define('SITE_DOMAIN', 'http://localhost:8888');
 define('SITE_PATH', '/Pflegeverbundde');
 define('SITE_URL', SITE_DOMAIN . SITE_PATH);
 
-// Asset URLs with cache busting in production
+// Asset URLs with cache busting in development
 define('ASSETS_URL', SITE_PATH . '/src');
 define('CSS_URL', ASSETS_URL . '/css');
 define('JS_URL', ASSETS_URL . '/js');
@@ -22,6 +22,7 @@ if (DEV_MODE) {
     header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
     header('Cache-Control: post-check=0, pre-check=0', false);
     header('Pragma: no-cache');
+    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 } else {
     // Enable caching in production
     $cache_time = 60 * 60 * 24; // 24 hours
@@ -38,7 +39,7 @@ $defaultMeta = [
 function asset_url($path) {
     if (DEV_MODE) {
         // Add timestamp for cache busting in development
-        return $path . '?v=' . time();
+        return $path . '?' . filemtime($_SERVER['DOCUMENT_ROOT'] . $path);
     }
     return $path;
 }

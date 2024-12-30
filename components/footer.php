@@ -4,7 +4,7 @@
 <footer class="footer">
     <div class="footer__container">
         <div class="footer__column">
-            <img src="<?=IMG_URL;?>/logo-light.svg" alt="Pflegeverbund Logo" class="footer__logo" width="200" height="100">
+            <img src="<?=asset_url(IMG_URL . '/logo-light.svg');?>" alt="Pflegeverbund Logo" class="footer__logo" width="200" height="100">
         </div>
         
         <div class="footer__column">

@@ -1,10 +1,19 @@
 :root {
   /* Colors */
+
+  /* Primary */
   --color-primary: #0066cc;
+  --color-primary-hover: color-mix(in srgb, var(--color-primary) 90%, white);
+  --color-primary-text: #ffffff;
+
+  /* Secondary */
   --color-secondary: #4a90e2;
+  --color-secondary-hover: color-mix(in srgb, var(--color-secondary) 90%, white);
+  --color-secondary-text: #ffffff;
 
   /* Accent */
   --color-accent: #a13d6e;
+  --color-accent-hover: color-mix(in srgb, var(--color-accent) 90%, white);
   --color-accent-text: #ffffff;
 
   /* Background */
@@ -18,6 +27,7 @@
   --color-link: #007bff;
   --color-border: #e2e8f0;
   
+  /* Response */
   --color-success: #28a745;
   --color-success-light: #d4edda;
   --color-error: #dc3545;
@@ -41,9 +51,10 @@
 
   /* Z-index layers */
   --z-index-cookie-banner: 1000;
-  --z-index-navigation: 100;
+  --z-index-navigation: 200;
   --z-index-faq-search: 50;
   --z-index-sidemenu: 1;
   --z-index-modal: 900;
   --z-index-overlay: 800;
+  --z-index-topbar: 150;
 }

@@ -23,24 +23,26 @@ ob_start();
 renderComponent('breadcrumb', ['items' => $breadcrumbItems]);
 ?>
 
+
+<div class="faq-header">
+    <h1 class="page-title">Häufig gestellte Fragen (FAQ)</h1>
+    
+    <div class="faq-search">
+        <div class="faq-search__container">
+            <input type="text" 
+                    id="faqSearch" 
+                    class="faq-search__input" 
+                    placeholder="Suchen Sie nach Fragen..."
+                    aria-label="FAQ durchsuchen">
+            <div id="searchResults" class="faq-search__results" hidden></div>
+        </div>
+    </div>
+</div>
+
+
 <main class="main-content">
     <div class="container">
 
-        <div class="faq-header">
-            <h1 class="page-title">Häufig gestellte Fragen (FAQ)</h1>
-            
-            <div class="faq-search">
-                <div class="faq-search__container">
-                    <input type="text" 
-                            id="faqSearch" 
-                            class="faq-search__input" 
-                            placeholder="Suchen Sie nach Fragen..."
-                            aria-label="FAQ durchsuchen">
-                    <div id="searchResults" class="faq-search__results" hidden></div>
-                </div>
-            </div>
-        </div>
-        
         <div class="faq-container">
             <?php foreach ($questionsByCategory as $category => $questions): ?>
                 <section class="faq-category" id="<?= createUrlSlug($category) ?>">

@@ -76,7 +76,7 @@
 }
 
 .newsletter-section__submit:hover {
-    background: #218838;
+    background: var(--color-accent-hover);
     transform: translateY(-1px);
 }
 
