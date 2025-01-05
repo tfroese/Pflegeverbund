@@ -62,8 +62,8 @@
 }
 
 .newsletter-section__submit {
-    background: var(--color-accent);
-    color: var(--color-accent-text);
+    background: var(--color-primary);
+    color: var(--color-primary-text);
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: var(--border-radius);
@@ -76,7 +76,7 @@
 }
 
 .newsletter-section__submit:hover {
-    background: var(--color-accent-hover);
+    background: var(--color-primary-hover);
     transform: translateY(-1px);
 }
 

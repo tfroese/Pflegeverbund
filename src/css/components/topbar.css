@@ -21,3 +21,19 @@
     margin: 0 auto;
     padding: 0 var(--container-padding);
   }
+
+  .top-bar__phone-link {
+    margin-left: 20px;
+    text-decoration: none;
+    /* Fügen Sie hier Ihre gewünschte Farbe und andere Stile hinzu */
+  }
+
+  .top-bar__phone-link i {
+    margin-right: 5px;
+  }
+
+  .top-bar .right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }

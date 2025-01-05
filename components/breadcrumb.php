@@ -1,5 +1,6 @@
 <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
+            <a href="#"><img src="<?= SITE_PATH ?>/src/images/home-icon.svg" alt="Startseite"></a>
             <?php 
             $lastIndex = count($items) - 1;
             foreach ($items as $index => $item): 

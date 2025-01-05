@@ -2,9 +2,16 @@
   /* Colors */
 
   /* Primary */
-  --color-primary: #0066cc;
-  --color-primary-hover: color-mix(in srgb, var(--color-primary) 90%, white);
+  --color-primary: #006ba2;
   --color-primary-text: #ffffff;
+
+  --color-primary-5: color-mix(in srgb, var(--color-primary) 5%, transparent);
+  --color-primary-10: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  --color-primary-20: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  --color-primary-120: color-mix(in srgb, var(--color-primary) 70%, color-mix(in srgb, black, white 0%));
+
+  --color-primary-hover: color-mix(in srgb, var(--color-primary) 80%, white);
+  --color-primary-active: var(--color-primary-120);
 
   /* Secondary */
   --color-secondary: #4a90e2;
@@ -36,6 +43,34 @@
   /* Typography */
   --font-family-base: 'Open Sans', system-ui, sans-serif;
   --font-family-heading: 'Roboto', system-ui, sans-serif;
+
+  /* Typography Scale - Using a modular scale with ratio of 1.25 (major third) */
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-md: 1.125rem;    /* 18px */
+  --font-size-lg: 1.25rem;     /* 20px */
+  --font-size-xl: 1.5rem;      /* 24px */
+  --font-size-2xl: 1.875rem;   /* 30px */
+  --font-size-3xl: 2.25rem;    /* 36px */
+  --font-size-4xl: 3rem;       /* 48px */
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;     /* Headings */
+  --line-height-base: 1.5;      /* Body text */
+  --line-height-relaxed: 1.75;  /* Long-form content */
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  
   
   /* Spacing */
   --spacing-unit: 0.25rem;

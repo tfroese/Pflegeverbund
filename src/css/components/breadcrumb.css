@@ -1,8 +1,7 @@
 nav[aria-label="breadcrumb"] {
     max-width: var(--container-max-width);
     margin: 0 auto;
-    padding: 0 var(--container-padding);
-    border-bottom: 1px solid var(--color-border);
+    padding: 12px var(--container-padding);
 }
 
 .breadcrumb {
@@ -14,15 +13,27 @@ nav[aria-label="breadcrumb"] {
 }
 
 .breadcrumb-item {
-    display: flex;
-    align-items: center;
+    position: relative;
+    padding-right: 3rem;
+}
+
+.breadcrumb-item:first-child {
+    padding-left: 0;
 }
 
 .breadcrumb-item:not(:last-of-type)::after {
+    content: '';
     display: inline-block;
-    content: "/";
-    margin: 0 0.5rem;
-    color: var(--color-text-secondary);
+    margin: 0 2rem;
+    position: absolute;
+    width: 2px;
+    height: 33px;
+    right: -6px;
+    top: -5px;
+    background: #f2f3f4;
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
 }
 
 .breadcrumb a {
@@ -32,4 +43,8 @@ nav[aria-label="breadcrumb"] {
 
 .breadcrumb a:hover {
     text-decoration: underline;
+}
+
+.breadcrumb-current {
+    font-weight: 800;
 }

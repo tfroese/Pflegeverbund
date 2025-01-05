@@ -1,12 +1,12 @@
 /* Header styles */
 .header {
   position: relative;
-  height: 800px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../images/header.jpg');
+  height: 700px;
+  background-color: var(--color-background-light);
+  background-image: url('../../images/pflegeleistungen-und-hilfsangebote.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background: var(--color-background-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,13 @@
 
 .header__content {
   max-width: 800px;
+  width: 100%;
   padding: 0 var(--container-padding);
+  color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .header__title {

@@ -29,16 +29,14 @@ ob_start();
 
 <header class="header">
     <div class="header__content">
-        <h1 class="header__title">Professionelle Pflegeberatung für Sie und Ihre Angehörigen</h1>
-        <p class="header__subtitle">Wir unterstützen Sie bei der Beantragung von Pflegeleistungen und beraten Sie kostenlos zu allen Fragen rund um die Pflege.</p>
-        
         <!-- Form start -->
         <div class="funnelform">
             <form id="questionnaireForm" action="" method="POST">
                 <fieldset class="active">
                     <div class="flex-page">
                         <div class="flex-header">
-                            <p>Kostenlose Pflegeberatung</p>
+                            <h1 class="header__title">Professionelle Pflegeberatung für Sie und Ihre Angehörigen</h1>
+                            <p class="header__subtitle">Wir unterstützen Sie mit einer <strong>kostenlosen Pflegeberatung</strong> bei der Beantragung von Pflegeleistungen und beraten Sie kostenlos zu allen Fragen rund um die Pflege.</p>
                             <legend>Für welche Person suchen Sie Unterstützung?</legend>
                         </div>
                         <div class="flex-content">

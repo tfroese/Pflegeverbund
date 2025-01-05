@@ -10,10 +10,16 @@
     display: flex;
     justify-content: center;
     color: var(--color-text);
+    background: var(--color-background);
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.05);
+    position: relative;
+    bottom: -100px;
+    transform: translateY(80px);
 }
 
 form#questionnaireForm {
-    min-height: 480px;
+    min-height: 500px;
     width: 100%;
     position: relative;
     overflow-x: hidden;
@@ -214,7 +220,7 @@ legend {
     opacity: 0.9;
 }
 .button:active {
-    background: var(--primary-120);
+    background: var(--color-primary-120);
 }
 .button.secondary {
     background-color: transparent;
