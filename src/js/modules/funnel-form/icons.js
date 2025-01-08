@@ -5,7 +5,7 @@ export function initFormIcons() {
         const label = input.nextElementSibling;
         const iconUrl = input.dataset.image;
         if (iconUrl && label) {
-            label.style.setProperty('--icon-url', `url(src/images/form/${iconUrl})`);
+            label.style.setProperty('--icon-url', `url('../../images/form/${iconUrl}')`);
         }
     });
 }

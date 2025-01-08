@@ -12,6 +12,7 @@
     color: var(--color-text);
     background: var(--color-background);
     border-radius: var(--border-radius-large);
+    overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.05);
     position: relative;
     bottom: -100px;
@@ -23,7 +24,8 @@ form#questionnaireForm {
     width: 100%;
     position: relative;
     overflow-x: hidden;
-    margin: 12px;
+    margin: 0;
+    padding: 0;
     
     @media only screen and (max-width: 700px) {
         width: 100%;
@@ -67,7 +69,8 @@ legend {
     justify-content: space-between;
     flex-direction: column;  
     height: 100%;
-    margin: 0 20px;
+    margin: 0;
+
 
     @media only screen and (max-width: 700px) {
         margin: 0 12px;
@@ -150,6 +153,7 @@ legend {
     margin: 4px auto;
     transition: border-color 0.2s;
     background-image: var(--icon-url);
+    
 }
 
 .input-group input[type="radio"]:checked + label,
@@ -213,7 +217,7 @@ legend {
     font-weight: bold;
     background-color: var(--color-primary);
     color: white;
-    border-radius: 12px;
+    border-radius: 0;
     text-align: center;
 }
 .button:hover {
@@ -252,13 +256,12 @@ legend {
 .flex-footer {
     display: flex;
     justify-content: center;     
-    padding: 20px 0;
-
+    padding: 0;
+    gap: 0;
+    
     @media only screen and (max-width: 700px) {
-        padding: 12px 0;
+        padding: 0;
     }
-
-    gap: 12px;
 }
 .flex-footer > a {
     flex-grow:1;

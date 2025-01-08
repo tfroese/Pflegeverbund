@@ -19,7 +19,7 @@
         <div class="footer__column">
             <h3>Nützliche Links</h3>
             <div class="footer__links">
-                <a href="https://www.bundesgesundheitsministerium.de/themen/pflege/pflegegrade" target="_blank" rel="noopener">BMG: Pflegestufen</a>
+                <a href="https://www.bundesgesundheitsministerium.de/service/publikationen/details/pflegeleistungen-zum-nachschlagen.html" target="_blank" rel="noopener">BMG: Pflegestufen</a>
                 <a href="<?=SITE_PATH;?>/faq">Häufig gestellte Fragen</a>
             </div>
         </div>
