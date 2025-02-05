@@ -35,8 +35,8 @@ ob_start();
                 <fieldset class="active">
                     <div class="flex-page">
                         <div class="flex-header">
-                            <h1 class="header__title">Professionelle Pflegeberatung für Sie und Ihre Angehörigen</h1>
-                            <p class="header__subtitle">Wir unterstützen Sie mit einer <strong>kostenlosen Pflegeberatung</strong> bei der Beantragung von Pflegeleistungen und beraten Sie kostenlos zu allen Fragen rund um die Pflege.</p>
+                            <h1 class="header__title">Professionelle Pflegeberatung – Wir informieren und vermitteln</h1>
+                            <p class="header__subtitle">Wir unterstützen Sie mit umfassenden Informationen zur Beantragung von Pflegeleistungen und helfen Ihnen dabei, die passende Pflegeberatung zu finden.</p>
                             <legend>Für welche Person suchen Sie Unterstützung?</legend>
                         </div>
                         <div class="flex-content">
@@ -100,16 +100,16 @@ ob_start();
                     <div class="flex-page">
                         <div class="flex-header">
                             <legend>Welche Themen sind für Sie interessant?</legend>
-                            <p>Mehrfachauswahl ist hier möglich.</p>
+                            <p>Alle Leistungen sind für Sie kostenlos, sofern Sie darauf Anspruch haben.<br />Mehrfachauswahl ist hier möglich.</p>
                         </div>
                         <div class="flex-content">
                             <div class="input-group multi mfull">
                                 <input type="checkbox" id="lead_topic_free_consulting" name="lead_topic_free_consulting" data-image="consulting.png" />
-                                <label for="lead_topic_free_consulting"><span>Kostenlose Pflegeberatung</span></label>
+                                <label for="lead_topic_free_consulting"><span>Pflegeberatung</span></label>
                             </div>
                             <div class="input-group multi mfull">
                                 <input type="checkbox" id="lead_topic_free_products" name="lead_topic_free_products" data-image="utilities.png" />
-                                <label for="lead_topic_free_products"><span>Kostenlose Pflegehilfsmittel</span></label>
+                                <label for="lead_topic_free_products"><span>Pflegehilfsmittel</span></label>
                             </div>
                             <div class="input-group multi mfull">
                                 <input type="checkbox" id="lead_topic_housekeeping" name="lead_topic_housekeeping" data-image="housekeeping.png" />
